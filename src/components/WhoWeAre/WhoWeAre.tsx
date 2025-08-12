@@ -1,6 +1,30 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Shield, AlertTriangle, Wind, Headphones, ClipboardCheck, Users } from 'lucide-react';
 import styles from './WhoWeAre.module.css';
+
+// Animation variants for entrance effects only
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0
+  }
+};
 
 const WhoWeAre: React.FC = () => {
   const stats = [
@@ -62,36 +86,64 @@ const WhoWeAre: React.FC = () => {
   return (
     <section id="who-we-are" className={styles.whoWeAre}>
       <div className={styles.container}>
-        <div className={styles.sectionHeader}>
+        <motion.div 
+          className={styles.sectionHeader}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={itemVariants}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 className={styles.title}>Who We Are</h2>
           <p className={styles.subtitle}>
             We partner with clients to engineer safer, better-performing buildings and infrastructure — guiding them from concept to handover and beyond.
           </p>
-        </div>
+        </motion.div>
 
         {/* Statistics Section */}
         <div className={styles.statsSection}>
-          <div className={styles.statsGrid}>
+          <motion.div 
+            className={styles.statsGrid}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+          >
             {stats.map((stat, index) => (
-              <div key={index} className={styles.statCard}>
+              <motion.div key={index} className={styles.statCard} variants={itemVariants} transition={{ duration: 0.6, ease: "easeOut" }}>
                 <div className={styles.statNumber} style={{ color: stat.color }}>
                   {stat.number}
                 </div>
                 <div className={styles.statLabel}>
                   {stat.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Core Values Section */}
         <div className={styles.coreValuesSection}>
-          <h3 className={styles.coreValuesTitle}>Our core values guide everything we do</h3>
+          <motion.h3 
+            className={styles.coreValuesTitle}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={itemVariants}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            Our core values guide everything we do
+          </motion.h3>
           
-          <div className={styles.valuesGrid}>
+          <motion.div 
+            className={styles.valuesGrid}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+          >
             {coreValues.map((value, index) => (
-              <div key={index} className={styles.valueCard}>
+              <motion.div key={index} className={styles.valueCard} variants={itemVariants} transition={{ duration: 0.6, ease: "easeOut" }}>
                 <div className={styles.valueIcon}>
                   {value.icon}
                 </div>
@@ -103,9 +155,9 @@ const WhoWeAre: React.FC = () => {
                     {value.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

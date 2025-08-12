@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Shield, AlertTriangle, Wind, Headphones, ClipboardCheck, UserCheck } from 'lucide-react';
 import styles from './Services.module.css';
 
 const Services: React.FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   const services = [
     {
       icon: <Shield size={24} />,
@@ -36,22 +40,84 @@ const Services: React.FC = () => {
     }
   ];
 
+  // Animation variants for staggered entrance
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1
+    }
+  };
+
   return (
-    <section id="services" className={styles.services}>
+    <section id="services" className={styles.services} ref={ref}>
       <div className={styles.container}>
-        <div className={styles.sectionHeader}>
+        <motion.div 
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <h2 className={styles.title}>What We Do</h2>
           <p className={styles.subtitle}>
             Explore our specialised engineering services — from strategy and design to delivery and beyond.
           </p>
-        </div>
+        </motion.div>
         
-        <div className={styles.servicesGrid}>
+        <motion.div 
+          className={styles.servicesGrid}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {services.map((service, index) => (
-            <div key={index} className={styles.serviceCard}>
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              className={styles.serviceCard}
+              transition={{
+                duration: 0.6,
+                ease: "easeOut"
+              }}
+              whileHover={{ 
+                scale: 1.03,
+                rotateX: 3,
+                rotateY: 3,
+                transition: { duration: 0.3 }
+              }}
+              style={{ 
+                transformStyle: 'preserve-3d',
+                perspective: 1000 
+              }}
+            >
               <div className={styles.cardHeader}>
                 <div className={styles.iconWrapper}>
-                  <div className={styles.serviceIcon}>{service.icon}</div>
+                  <motion.div 
+                    className={styles.serviceIcon}
+                    whileHover={{ 
+                      rotate: 360,
+                      scale: 1.1,
+                      transition: { duration: 0.6 }
+                    }}
+                  >
+                    {service.icon}
+                  </motion.div>
                 </div>
                 <h3 className={styles.serviceTitle}>{service.title}</h3>
               </div>
@@ -69,9 +135,9 @@ const Services: React.FC = () => {
                 Learn More
                 <span className={styles.arrow}>→</span>
               </button>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

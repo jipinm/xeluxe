@@ -37,8 +37,11 @@ const Footer: React.FC = () => {
         <div className={styles.footerContent}>
           <div className={styles.companySection}>
             <div className={styles.logo}>
-              <span className={styles.logoText}>Xeluxe</span>
-              <span className={styles.logoSubtext}>Fire & Safety</span>
+              <img src="/logo.png" alt="Xeluxe Fire & Safety" className={styles.logoImage} />
+              <div className={styles.tagline}>
+                <div>Engineering a Sustainable</div>
+                <div>and Resilient Future - Together</div>
+              </div>
             </div>
             
             <p className={styles.companyDescription}>
@@ -137,8 +140,8 @@ const Footer: React.FC = () => {
             </div>
             
             <div className={styles.legalLinks}>
-              <a href="#" className={styles.legalLink}>Privacy Policy</a>
-              <a href="#" className={styles.legalLink}>Terms of Service</a>
+              <a href="#" className={styles.legalLink}>Blog</a>
+              <a href="#" className={styles.legalLink}>Careers</a>
               <a href="#" className={styles.legalLink}>Cookie Policy</a>
             </div>
             

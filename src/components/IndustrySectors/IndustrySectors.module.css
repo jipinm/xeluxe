@@ -13,8 +13,8 @@
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(circle at 20% 20%, rgba(248, 175, 27, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(248, 175, 27, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 20%, rgba(248, 175, 27, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(248, 175, 27, 0.08) 0%, transparent 50%);
   z-index: 1;
 }
 
@@ -35,7 +35,7 @@
   font-size: 3rem;
   font-weight: 800;
   color: #1a1a1a;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   line-height: 1.2;
 }
 
@@ -46,154 +46,184 @@
   line-height: 1.6;
 }
 
-.circleContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 0;
-  position: relative;
+.sectorsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
 }
 
-.circleWrapper {
+.sectorCard {
   position: relative;
-  width: 800px;
-  height: 800px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.centerCircle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(248, 175, 27, 0.1);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  overflow: hidden;
   height: 200px;
-  background: linear-gradient(135deg, #f8af1b 0%, #ff9500 100%);
-  border-radius: 50%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  box-shadow: 0 15px 40px rgba(248, 175, 27, 0.4);
-  z-index: 10;
+  justify-content: center;
 }
 
-.centerTitle {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: white;
-  margin: 0;
-  line-height: 1.1;
-}
-
-.centerSubtitle {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: white;
-  margin: 0;
-  line-height: 1.1;
-}
-
-.circleBorder {
+.sectorCard::before {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 560px;
-  height: 560px;
-  border: 2px dashed rgba(248, 175, 27, 0.4);
-  border-radius: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(248, 175, 27, 0.02) 0%, 
+    rgba(248, 175, 27, 0.05) 50%, 
+    rgba(248, 175, 27, 0.02) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
   z-index: 1;
 }
 
-.sectorItem {
+.sectorCard:hover::before {
+  opacity: 1;
+}
+
+.sectorCard:hover {
+  border-color: rgba(248, 175, 27, 0.25);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(248, 175, 27, 0.1);
+}
+
+.cardContent {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.iconContainer {
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 1.5rem;
+}
+
+.iconBackground {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform-origin: 0 35px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  z-index: 5;
-  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, 
+    rgba(248, 175, 27, 0.1) 0%, 
+    rgba(248, 175, 27, 0.2) 100%);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  z-index: 1;
 }
 
-.sectorItem:hover {
-  transform: rotate(var(--angle)) translateX(315px) rotate(calc(-1 * var(--angle))) translate(-50%, -35px) scale(1.05);
+.sectorCard:hover .iconBackground {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: linear-gradient(135deg, 
+    rgba(248, 175, 27, 0.2) 0%, 
+    rgba(248, 175, 27, 0.3) 100%);
 }
 
 .sectorIcon {
-  width: 70px;
-  height: 70px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border: 2px solid rgba(248, 175, 27, 0.15);
+  position: relative;
+  z-index: 2;
+  width: 64px;
+  height: 64px;
+  background: #ffffff;
+  border: 2px solid #e5e5e5;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #444;
-  margin-bottom: 0.6rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  color: #1a1a1a;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease;
 }
 
-.sectorItem:hover .sectorIcon {
-  background: #f8af1b;
-  color: white;
+.sectorCard:hover .sectorIcon {
+  transform: scale(1.05);
   border-color: #f8af1b;
-  transform: scale(1.15);
-  box-shadow: 0 8px 25px rgba(248, 175, 27, 0.3);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.15),
+    0 6px 12px rgba(248, 175, 27, 0.2);
 }
 
 .sectorName {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #444;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  border: 1px solid rgba(248, 175, 27, 0.1);
-  white-space: nowrap;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.3;
+  margin: 0;
+  transition: color 0.3s ease;
 }
 
-.sectorItem:hover .sectorName {
-  background: rgba(248, 175, 27, 0.15);
-  border-color: rgba(248, 175, 27, 0.4);
+.sectorCard:hover .sectorName {
   color: #f8af1b;
-  transform: translateY(-2px);
+}
+
+.cardGlow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(248, 175, 27, 0.15) 0%, transparent 70%);
+  transform: scale(0);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sectorCard:hover .cardGlow {
+  transform: scale(1);
 }
 
 .footerTagline {
-  text-align: center;
-  margin-top: 4rem;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(248, 175, 27, 0.1);
-  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
 }
 
-.footerTagline p {
-  font-size: 1.3rem;
+.footerLine {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(248, 175, 27, 0.5) 50%, transparent 100%);
+}
+
+.footerText {
+  font-size: 1.1rem;
   font-weight: 600;
   color: #f8af1b;
   margin: 0;
+  text-align: center;
   font-style: italic;
-  line-height: 1.4;
+  white-space: nowrap;
 }
 
 /* Mobile Styles */
+@media (max-width: 1024px) {
+  .sectorsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .industrySectors {
-    padding: 80px 0;
+    padding: 60px 0;
   }
   
   .container {
@@ -208,47 +238,40 @@
     font-size: 1.1rem;
   }
   
-  .sectionHeader {
-    margin-bottom: 3rem;
+  .sectorsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
   }
   
-  .circleWrapper {
-    width: 550px;
-    height: 550px;
-  }
-  
-  .centerCircle {
-    width: 140px;
-    height: 140px;
-  }
-  
-  .centerTitle,
-  .centerSubtitle {
-    font-size: 1.2rem;
-  }
-  
-  .circleBorder {
-    width: 320px;
-    height: 320px;
+  .sectorCard {
+    padding: 2rem 1.5rem;
+    height: 180px;
   }
   
   .sectorIcon {
-    width: 55px;
-    height: 55px;
+    width: 56px;
+    height: 56px;
+  }
+  
+  .iconBackground {
+    width: 70px;
+    height: 70px;
   }
   
   .sectorName {
-    font-size: 0.85rem;
-    padding: 0.3rem 0.7rem;
+    font-size: 1.1rem;
   }
   
   .footerTagline {
-    margin-top: 3rem;
-    padding: 1.5rem;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
   }
   
-  .footerTagline p {
-    font-size: 1.1rem;
+  .footerText {
+    font-size: 1rem;
+    white-space: normal;
+    text-align: center;
   }
 }
 
@@ -257,70 +280,31 @@
     font-size: 2rem;
   }
   
-  .circleWrapper {
-    width: 450px;
-    height: 450px;
+  .sectorsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
-  .centerCircle {
-    width: 110px;
-    height: 110px;
-  }
-  
-  .centerTitle,
-  .centerSubtitle {
-    font-size: 1rem;
-  }
-  
-  .circleBorder {
-    width: 260px;
-    height: 260px;
+  .sectorCard {
+    padding: 1.5rem 1rem;
+    height: 160px;
   }
   
   .sectorIcon {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
+  }
+  
+  .iconBackground {
+    width: 60px;
+    height: 60px;
   }
   
   .sectorName {
-    font-size: 0.75rem;
-    padding: 0.2rem 0.5rem;
-  }
-  
-  .footerTagline p {
     font-size: 1rem;
   }
-}
-
-/* Responsive adjustments for sector positioning */
-@media (max-width: 768px) {
-  .sectorItem {
-    transform-origin: 0 27.5px;
-    transform: rotate(var(--angle)) translateX(198px) rotate(calc(-1 * var(--angle))) translate(-50%, -27.5px);
-  }
   
-  .sectorItem:hover {
-    transform: rotate(var(--angle)) translateX(198px) rotate(calc(-1 * var(--angle))) translate(-50%, -27.5px) scale(1.05);
-  }
-  
-  .circleBorder {
-    width: 340px;
-    height: 340px;
-  }
-}
-
-@media (max-width: 480px) {
-  .sectorItem {
-    transform-origin: 0 22.5px;
-    transform: rotate(var(--angle)) translateX(153px) rotate(calc(-1 * var(--angle))) translate(-50%, -22.5px);
-  }
-  
-  .sectorItem:hover {
-    transform: rotate(var(--angle)) translateX(153px) rotate(calc(-1 * var(--angle))) translate(-50%, -22.5px) scale(1.05);
-  }
-  
-  .circleBorder {
-    width: 260px;
-    height: 260px;
+  .footerText {
+    font-size: 0.95rem;
   }
 }

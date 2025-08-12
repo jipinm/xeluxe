@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { User, GraduationCap } from 'lucide-react';
 import styles from './Leadership.module.css';
 
@@ -55,19 +56,59 @@ const Leadership: React.FC = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
   return (
     <section id="leadership" className={styles.leadership}>
       <div className={styles.container}>
-        <div className={styles.sectionHeader}>
+        <motion.div 
+          className={styles.sectionHeader}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={itemVariants}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 className={styles.title}>Leadership & Technical Expertise</h2>
           <p className={styles.subtitle}>
             Xeluxe's leadership team combines global project experience, technical depth, and regulatory expertise to support complex developments across the built environment. Our directors bring specialised knowledge across all core service lines, ensuring senior oversight and delivery excellence on every project.
           </p>
-        </div>
+        </motion.div>
         
-        <div className={styles.teamGrid}>
+        <motion.div 
+          className={styles.teamGrid}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+        >
           {teamMembers.map((member, index) => (
-            <div key={index} className={styles.memberCard}>
+            <motion.div 
+              key={index} 
+              className={styles.memberCard}
+              variants={itemVariants}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               <div className={styles.cardHeader}>
                 <div className={styles.photoContainer}>
                   <div className={styles.photoPlaceholder}>
@@ -90,9 +131,9 @@ const Leadership: React.FC = () => {
                 
                 <p className={styles.description}>{member.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

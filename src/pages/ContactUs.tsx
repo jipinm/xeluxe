@@ -1,14 +1,8 @@
 import React from 'react';
-import styles from './ContactUs.module.css';
+import ContactUs from '../components/ContactUs/ContactUs';
 
-const ContactUs: React.FC = () => {
-  return (
-    <div className={styles.contactUsPage}>
-      <main className={styles.mainContent}>
-        {/* Contact Us page content will go here */}
-      </main>
-    </div>
-  );
+const ContactUsPage: React.FC = () => {
+  return <ContactUs />;
 };
 
-export default ContactUs;
+export default ContactUsPage;

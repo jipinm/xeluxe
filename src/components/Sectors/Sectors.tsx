@@ -1,6 +1,30 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Building2, Plane, Heart, GraduationCap, ShoppingBag, Factory } from 'lucide-react';
 import styles from './Sectors.module.css';
+
+// Animation variants for entrance effects only
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0
+  }
+};
 
 const Sectors: React.FC = () => {
   const sectors = [
@@ -57,18 +81,31 @@ const Sectors: React.FC = () => {
   return (
     <section id="sectors" className={styles.sectors}>
       <div className={styles.container}>
-        <div className={styles.sectionHeader}>
+        <motion.div 
+          className={styles.sectionHeader}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={itemVariants}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 className={styles.title}>
             Specialist consultancy across critical, complex, and high-performance environments.
           </h2>
           <p className={styles.subtitle}>
             From complex developments to healthcare, aviation, and hospitality — we support safer, smarter delivery across every phase of the built environment.
           </p>
-        </div>
+        </motion.div>
         
-        <div className={styles.sectorsGrid}>
+        <motion.div 
+          className={styles.sectorsGrid}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+        >
           {sectors.map((sector) => (
-            <div key={sector.id} className={styles.sectorCard}>
+            <motion.div key={sector.id} className={styles.sectorCard} variants={itemVariants} transition={{ duration: 0.6, ease: "easeOut" }}>
               <div className={styles.imageWrapper}>
                 <img 
                   src={sector.image} 
@@ -108,9 +145,9 @@ const Sectors: React.FC = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

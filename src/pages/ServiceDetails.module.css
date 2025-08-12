@@ -1,0 +1,14 @@
+/* ServiceDetails Page Styles */
+.serviceDetailsPage {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #FFFFFF;
+}
+
+.mainContent {
+  width: 100%;
+  position: relative;
+  z-index: 1; /* Ensure content is above header */
+}

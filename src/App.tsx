@@ -25,6 +25,14 @@ function App() {
         return 'Contact Us';
       // Add more cases for other pages as needed
       default:
+        // Check if it's a service details page (/service/:slug)
+        if (pathname.startsWith('/service/')) {
+          return 'Service Details';
+        }
+        // Check if it's a project details page (/project/:slug)
+        if (pathname.startsWith('/project/')) {
+          return 'Project Details';
+        }
         return '';
     }
   };

@@ -1,6 +1,30 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Target, Flag, Shield, Scale, Network, FileText, Lightbulb, Trophy } from 'lucide-react';
 import styles from './VisionMissionValuesSection.module.css';
+
+// Animation variants for entrance effects only
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0
+  }
+};
 
 const VisionMissionValuesSection: React.FC = () => {
   const values = [
@@ -39,16 +63,29 @@ const VisionMissionValuesSection: React.FC = () => {
   return (
     <section id="vision-mission-values" className={styles.visionMissionValues}>
       <div className={styles.container}>
-        <div className={styles.sectionHeader}>
+        <motion.div 
+          className={styles.sectionHeader}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={itemVariants}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 className={styles.title}>Vision, Mission & Values</h2>
           <p className={styles.subtitle}>
             Our foundation principles that guide every decision, project, and partnership as we work to create a safer, more sustainable built environment.
           </p>
-        </div>
+        </motion.div>
         
-        <div className={styles.contentGrid}>
+        <motion.div 
+          className={styles.contentGrid}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+        >
           {/* Left Column - Vision and Mission */}
-          <div className={styles.leftColumn}>
+          <motion.div className={styles.leftColumn} variants={itemVariants} transition={{ duration: 0.6, ease: "easeOut" }}>
             {/* Vision Card */}
             <div className={styles.contentCard}>
               <div className={styles.cardHeader}>
@@ -78,10 +115,10 @@ const VisionMissionValuesSection: React.FC = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column - Values */}
-          <div className={styles.rightColumn}>
+          <motion.div className={styles.rightColumn} variants={itemVariants} transition={{ duration: 0.6, ease: "easeOut" }}>
             <div className={styles.contentCard}>
               <div className={styles.cardHeader}>
                 <h3 className={styles.cardTitle}>Values</h3>
@@ -103,8 +140,8 @@ const VisionMissionValuesSection: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

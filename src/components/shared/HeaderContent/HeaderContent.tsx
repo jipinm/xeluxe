@@ -43,7 +43,21 @@ const HeaderContent: React.FC<HeaderContentProps> = ({ styles, className = '' })
   // Function to check if a navigation item is active
   const isActiveNavItem = (item: NavItem): boolean => {
     // For route-based navigation, check exact path match
-    return location.pathname === item.href;
+    if (location.pathname === item.href) {
+      return true;
+    }
+    
+    // Special case: highlight "Services" menu when on service detail pages
+    if (item.href === '/services' && location.pathname.startsWith('/service/')) {
+      return true;
+    }
+    
+    // Special case: highlight "Projects" menu when on project detail pages
+    if (item.href === '/projects' && location.pathname.startsWith('/project/')) {
+      return true;
+    }
+    
+    return false;
   };
 
   return (

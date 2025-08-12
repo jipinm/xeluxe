@@ -283,11 +283,15 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(248, 175, 27, 0.3);
+  text-decoration: none;
+  display: inline-block;
 }
 
 .primaryButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(248, 175, 27, 0.4);
+  color: white;
+  text-decoration: none;
 }
 
 .secondaryButton {

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { 
   Plane, 
   Server, 
@@ -17,6 +18,9 @@ import {
 import styles from './IndustrySectors.module.css';
 
 const IndustrySectors: React.FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   const sectors = [
     { name: 'Aviation', icon: <Plane size={24} />, angle: 0 },
     { name: 'Mission Critical', icon: <Server size={24} />, angle: 27.7 },
@@ -33,49 +37,89 @@ const IndustrySectors: React.FC = () => {
     { name: 'Industrial', icon: <Factory size={24} />, angle: 332.4 }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1
+    }
+  };
+
   return (
-    <section id="industry-sectors" className={styles.industrySectors}>
+    <section id="industry-sectors" className={styles.industrySectors} ref={ref}>
       <div className={styles.container}>
-        <div className={styles.sectionHeader}>
+        <motion.div 
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
           <h2 className={styles.title}>Industry and Sector We Serve</h2>
           <p className={styles.subtitle}>
             We bring proven experience across diverse sectors and asset types in the building and infrastructure industry — supporting clients at every scale, from masterplans to specialist facilities.
           </p>
-        </div>
+        </motion.div>
         
-        <div className={styles.circleContainer}>
-          <div className={styles.circleWrapper}>
-            {/* Center Circle */}
-            <div className={styles.centerCircle}>
-              <h3 className={styles.centerTitle}>Building &</h3>
-              <h3 className={styles.centerSubtitle}>Infrastructure</h3>
-            </div>
-            
-            {/* Sector Items */}
-            {sectors.map((sector, index) => (
-              <div
-                key={index}
-                className={styles.sectorItem}
-                style={{
-                  '--angle': `${sector.angle}deg`,
-                  transform: `rotate(${sector.angle}deg) translateX(315px) rotate(-${sector.angle}deg) translate(-50%, -35px)`
-                } as React.CSSProperties}
-              >
-                <div className={styles.sectorIcon}>
-                  {sector.icon}
+        <motion.div 
+          className={styles.sectorsGrid}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {sectors.map((sector, index) => (
+            <motion.div
+              key={index}
+              className={styles.sectorCard}
+              variants={cardVariants}
+              transition={{
+                duration: 0.6,
+                ease: "easeOut"
+              }}
+              whileHover={{ 
+                y: -8,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
+            >
+              <div className={styles.cardContent}>
+                <div className={styles.iconContainer}>
+                  <div className={styles.iconBackground}></div>
+                  <div className={styles.sectorIcon}>
+                    {sector.icon}
+                  </div>
                 </div>
-                <span className={styles.sectorName}>{sector.name}</span>
+                <h3 className={styles.sectorName}>{sector.name}</h3>
               </div>
-            ))}
-            
-            {/* Circle Border - positioned to align with icon centers */}
-            <div className={styles.circleBorder}></div>
-          </div>
-        </div>
+              <div className={styles.cardGlow}></div>
+            </motion.div>
+          ))}
+        </motion.div>
         
-        <div className={styles.footerTagline}>
-          <p>Engineering a Sustainable and Resilient Future – Together</p>
-        </div>
+        <motion.div 
+          className={styles.footerTagline}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className={styles.footerLine}></div>
+          <p className={styles.footerText}>Engineering a Sustainable and Resilient Future – Together</p>
+          <div className={styles.footerLine}></div>
+        </motion.div>
       </div>
     </section>
   );
