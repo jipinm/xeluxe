@@ -262,6 +262,8 @@
 /* Non-Home Page Header Video Background */
 .nonHomePage {
   position: relative;
+  height: 40vh; /* Take up space in document flow */
+  min-height: 300px;
 }
 
 .nonHomePage::before {

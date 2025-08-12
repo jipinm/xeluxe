@@ -13,6 +13,16 @@ function App() {
     switch (pathname) {
       case '/about-us':
         return 'About Us';
+      case '/services':
+        return 'Our Services';
+      case '/sectors':
+        return 'Our Sectors';
+      case '/projects':
+        return 'Our Projects';
+      case '/insights':
+        return 'Insights';
+      case '/contact-us':
+        return 'Contact Us';
       // Add more cases for other pages as needed
       default:
         return '';

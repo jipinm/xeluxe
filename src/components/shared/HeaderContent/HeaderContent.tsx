@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 interface NavItem {
   name: string;
   href: string;
-  type: 'route' | 'scroll';
+  type: 'route';
 }
 
 interface HeaderContentProps {
@@ -33,21 +33,17 @@ const HeaderContent: React.FC<HeaderContentProps> = ({ styles, className = '' })
   const navItems: NavItem[] = [
     { name: 'Home', href: '/', type: 'route' },
     { name: 'About Us', href: '/about-us', type: 'route' },
-    { name: 'Services', href: '#services', type: 'scroll' },
-    { name: 'Sectors', href: '#sectors', type: 'scroll' },
-    { name: 'Projects', href: '#projects', type: 'scroll' },
-    { name: 'Insights', href: '#insights', type: 'scroll' },
-    { name: 'Contact Us', href: '#contact', type: 'scroll' },
+    { name: 'Services', href: '/services', type: 'route' },
+    { name: 'Sectors', href: '/sectors', type: 'route' },
+    { name: 'Projects', href: '/projects', type: 'route' },
+    { name: 'Insights', href: '/insights', type: 'route' },
+    { name: 'Contact Us', href: '/contact-us', type: 'route' },
   ];
 
   // Function to check if a navigation item is active
   const isActiveNavItem = (item: NavItem): boolean => {
-    if (item.type === 'route') {
-      // For route-based navigation, check exact path match
-      return location.pathname === item.href;
-    }
-    // For scroll-based navigation, we'll handle this later
-    return false;
+    // For route-based navigation, check exact path match
+    return location.pathname === item.href;
   };
 
   return (
@@ -67,23 +63,13 @@ const HeaderContent: React.FC<HeaderContentProps> = ({ styles, className = '' })
               const isActive = isActiveNavItem(item);
               return (
                 <li key={index} className={styles.navItem}>
-                  {item.type === 'route' ? (
-                    <Link 
-                      to={item.href} 
-                      className={`${styles.navLink} ${isActive ? styles.active : ''}`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ) : (
-                    <a 
-                      href={item.href} 
-                      className={`${styles.navLink} ${isActive ? styles.active : ''}`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  )}
+                  <Link 
+                    to={item.href} 
+                    className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
                 </li>
               );
             })}
