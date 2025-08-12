@@ -1,0 +1,326 @@
+.industrySectors {
+  padding: 60px 0;
+  background: linear-gradient(135deg, #FAFAFA 0%, #F8F9FA 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.industrySectors::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(248, 175, 27, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(248, 175, 27, 0.1) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionHeader {
+  text-align: left;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.circleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.circleWrapper {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centerCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #f8af1b 0%, #ff9500 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(248, 175, 27, 0.4);
+  z-index: 10;
+}
+
+.centerTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.centerSubtitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.circleBorder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 560px;
+  height: 560px;
+  border: 2px dashed rgba(248, 175, 27, 0.4);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.sectorItem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.sectorItem:hover {
+  transform: rotate(var(--angle)) translateX(315px) rotate(calc(-1 * var(--angle))) translate(-50%, -35px) scale(1.05);
+}
+
+.sectorIcon {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(248, 175, 27, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+  margin-bottom: 0.6rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sectorItem:hover .sectorIcon {
+  background: #f8af1b;
+  color: white;
+  border-color: #f8af1b;
+  transform: scale(1.15);
+  box-shadow: 0 8px 25px rgba(248, 175, 27, 0.3);
+}
+
+.sectorName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #444;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(248, 175, 27, 0.1);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sectorItem:hover .sectorName {
+  background: rgba(248, 175, 27, 0.15);
+  border-color: rgba(248, 175, 27, 0.4);
+  color: #f8af1b;
+  transform: translateY(-2px);
+}
+
+.footerTagline {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(248, 175, 27, 0.1);
+  border-radius: 20px;
+}
+
+.footerTagline p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f8af1b;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .industrySectors {
+    padding: 80px 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 3rem;
+  }
+  
+  .circleWrapper {
+    width: 550px;
+    height: 550px;
+  }
+  
+  .centerCircle {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .centerTitle,
+  .centerSubtitle {
+    font-size: 1.2rem;
+  }
+  
+  .circleBorder {
+    width: 320px;
+    height: 320px;
+  }
+  
+  .sectorIcon {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .sectorName {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.7rem;
+  }
+  
+  .footerTagline {
+    margin-top: 3rem;
+    padding: 1.5rem;
+  }
+  
+  .footerTagline p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .circleWrapper {
+    width: 450px;
+    height: 450px;
+  }
+  
+  .centerCircle {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .centerTitle,
+  .centerSubtitle {
+    font-size: 1rem;
+  }
+  
+  .circleBorder {
+    width: 260px;
+    height: 260px;
+  }
+  
+  .sectorIcon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .sectorName {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+  
+  .footerTagline p {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive adjustments for sector positioning */
+@media (max-width: 768px) {
+  .sectorItem {
+    transform-origin: 0 27.5px;
+    transform: rotate(var(--angle)) translateX(198px) rotate(calc(-1 * var(--angle))) translate(-50%, -27.5px);
+  }
+  
+  .sectorItem:hover {
+    transform: rotate(var(--angle)) translateX(198px) rotate(calc(-1 * var(--angle))) translate(-50%, -27.5px) scale(1.05);
+  }
+  
+  .circleBorder {
+    width: 340px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectorItem {
+    transform-origin: 0 22.5px;
+    transform: rotate(var(--angle)) translateX(153px) rotate(calc(-1 * var(--angle))) translate(-50%, -22.5px);
+  }
+  
+  .sectorItem:hover {
+    transform: rotate(var(--angle)) translateX(153px) rotate(calc(-1 * var(--angle))) translate(-50%, -22.5px) scale(1.05);
+  }
+  
+  .circleBorder {
+    width: 260px;
+    height: 260px;
+  }
+}

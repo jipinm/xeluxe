@@ -1,50 +1,62 @@
 import React from 'react';
+import { Quote } from 'lucide-react';
 import styles from './WhoWeAreSection.module.css';
 
 const WhoWeAreSection: React.FC = () => {
   return (
-    <section className={styles.whoWeAreSection}>
+    <section id="who-we-are" className={styles.whoWeAre}>
       <div className={styles.container}>
-        <h2 className={styles.heading}>Who We Are</h2>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.title}>Who We Are</h2>
+          <p className={styles.subtitle}>
+            We partner with clients to engineer safer, better-performing buildings and infrastructure — guiding them from concept to handover and beyond.
+          </p>
+        </div>
         
-        <div className={styles.content}>
-          <div className={styles.leftColumn}>
-            <blockquote className={styles.quote}>
-              <p className={styles.quoteText}>
-                <span className={styles.boldItalic}>Xeluxe is a specialist engineering consultancy.</span>
-                <br /><br />
-                <span className={styles.italic}>
-                  We partner with clients to <span className={styles.bold}>ensure fire and life safety</span>, 
-                  <span className={styles.bold}> enhance operational performance</span>, and 
-                  <span className={styles.bold}> improve sustainability</span> across the built environment.
-                </span>
-              </p>
-            </blockquote>
+        <div className={styles.contentGrid}>
+          {/* Quote Card */}
+          <div className={styles.quoteCard}>
+            <div className={styles.quoteIconContainer}>
+              <Quote size={48} />
+            </div>
+            <div className={styles.quoteContent}>
+              <blockquote className={styles.quote}>
+                <p className={styles.quoteText}>
+                  <strong>Xeluxe is a specialist engineering consultancy.</strong>
+                </p>
+                <p className={styles.quoteSubtext}>
+                  We partner with clients to <strong>ensure fire and life safety</strong>, 
+                  <strong> enhance operational performance</strong>, and 
+                  <strong> improve sustainability</strong> across the built environment.
+                </p>
+              </blockquote>
+            </div>
           </div>
-          
-          <div className={styles.rightColumn}>
-            <div className={styles.paragraphs}>
-              <p className={styles.paragraph}>
-                Founded in 2014 and headquartered in Dubai — with offices in Abu Dhabi, Dammam, India, and Ireland — we operate across the EMEAI region and are trusted by clients in <span className={styles.bold}>aviation</span>, <span className={styles.bold}>hospitality</span>, <span className={styles.bold}>giga projects</span>, <span className={styles.bold}>infrastructure</span>, and <span className={styles.bold}>industrial development</span>.
+
+          {/* Content Card */}
+          <div className={styles.contentCard}>
+            <div className={styles.cardContent}>
+              <p>
+                Founded in 2014 and headquartered in Dubai — with offices in Abu Dhabi, Dammam, India, and Ireland — we operate across the EMEAI region and are trusted by clients in <strong>aviation</strong>, <strong>hospitality</strong>, <strong>giga projects</strong>, <strong>infrastructure</strong>, and <strong>industrial development</strong>.
               </p>
-              
-              <p className={styles.paragraph}>
-                Our expertise spans <span className={styles.bold}>Fire & Life Safety</span>, <span className={styles.bold}>Process Safety</span>, <span className={styles.bold}>Engineering Simulations</span>, <span className={styles.bold}>Acoustics</span>, <span className={styles.bold}>Commissioning</span>, <span className={styles.bold}>Construction Supervision with Integrated Peer Review</span> — supporting clients from concept through to handover and ongoing operations.
+              <p>
+                Our expertise spans <strong>Fire & Life Safety</strong>, <strong>Process Safety</strong>, <strong>Engineering Simulations</strong>, <strong>Acoustics</strong>, <strong>Commissioning</strong>, <strong>Construction Supervision with Integrated Peer Review</strong> — supporting clients from concept through to handover and ongoing operations.
               </p>
-              
-              <p className={styles.paragraph}>
-                We are <span className={styles.bold}>ISO 9001</span> certified and officially recognised as a <span className={styles.bold}>House of Expertise by Dubai Civil Defence</span>, with advanced-stage approvals in progress with Abu Dhabi and Saudi Civil Defence (Salamah).
+              <p>
+                We are <strong>ISO 9001</strong> certified and officially recognised as a <strong>House of Expertise by Dubai Civil Defence</strong>, with advanced-stage approvals in progress with Abu Dhabi and Saudi Civil Defence (Salamah).
               </p>
-              
-              <p className={styles.paragraph}>
-                Our team of 50+ certified professionals — including <span className={styles.bold}>CEng</span>, <span className={styles.bold}>PE</span>, <span className={styles.bold}>PhD</span>, and <span className={styles.bold}>CFPS</span> — brings regulatory insight and real-world project experience to deliver practical, code-compliant solutions.
-              </p>
-              
-              <p className={styles.paragraph}>
-                We foster a <span className={styles.bold}>culture of collaboration and technical excellence</span>, enabling us to adapt quickly and add value across every project phase.
+              <p>
+                Our team of 50+ certified professionals — including <strong>CEng</strong>, <strong>PE</strong>, <strong>PhD</strong>, and <strong>CFPS</strong> — brings regulatory insight and real-world project experience to deliver practical, code-compliant solutions.
               </p>
             </div>
           </div>
+        </div>
+        
+        {/* Quote Footer */}
+        <div className={styles.quoteFooter}>
+          <div className={styles.footerLine}></div>
+          <p className={styles.footerText}>Engineering a Sustainable and Resilient Future - Together</p>
+          <div className={styles.footerLine}></div>
         </div>
       </div>
     </section>

@@ -1,0 +1,113 @@
+import React from 'react';
+import { Target, Flag, Shield, Scale, Network, FileText, Lightbulb, Trophy } from 'lucide-react';
+import styles from './VisionMissionValuesSection.module.css';
+
+const VisionMissionValuesSection: React.FC = () => {
+  const values = [
+    {
+      icon: <Shield size={24} />,
+      title: 'Safety',
+      description: 'We prioritise life safety in everything we do.'
+    },
+    {
+      icon: <Scale size={24} />,
+      title: 'Integrity',
+      description: 'We operate transparently and ethically, always.'
+    },
+    {
+      icon: <Network size={24} />,
+      title: 'Collaboration',
+      description: 'We work side-by-side with clients and partners to achieve shared success.'
+    },
+    {
+      icon: <FileText size={24} />,
+      title: 'Accountability',
+      description: 'We take ownership of outcomes and deliver on our promises.'
+    },
+    {
+      icon: <Lightbulb size={24} />,
+      title: 'Innovation',
+      description: 'We apply advanced thinking to real-world challenges.'
+    },
+    {
+      icon: <Trophy size={24} />,
+      title: 'Excellence',
+      description: 'We strive for the highest standards in every project and interaction.'
+    }
+  ];
+
+  return (
+    <section id="vision-mission-values" className={styles.visionMissionValues}>
+      <div className={styles.container}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.title}>Vision, Mission & Values</h2>
+          <p className={styles.subtitle}>
+            Our foundation principles that guide every decision, project, and partnership as we work to create a safer, more sustainable built environment.
+          </p>
+        </div>
+        
+        <div className={styles.contentGrid}>
+          {/* Left Column - Vision and Mission */}
+          <div className={styles.leftColumn}>
+            {/* Vision Card */}
+            <div className={styles.contentCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.iconContainer}>
+                  <Target size={16} />
+                </div>
+                <h3 className={styles.cardTitle}>Vision</h3>
+              </div>
+              <div className={styles.cardContent}>
+                <p>
+                  To lead the way in creating a safer, more sustainable, and resilient built environment — where people, projects, and systems perform at their best.
+                </p>
+              </div>
+            </div>
+
+            {/* Mission Card */}
+            <div className={styles.contentCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.iconContainer}>
+                  <Flag size={16} />
+                </div>
+                <h3 className={styles.cardTitle}>Mission</h3>
+              </div>
+              <div className={styles.cardContent}>
+                <p>
+                  To be the trusted and preferred specialist engineering company for our partners in the built environment, fostering lasting value by protecting life, preserving assets, and delivering resilient, high-performance solutions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Values */}
+          <div className={styles.rightColumn}>
+            <div className={styles.contentCard}>
+              <div className={styles.cardHeader}>
+                <h3 className={styles.cardTitle}>Values</h3>
+              </div>
+              <div className={styles.cardContent}>
+                <div className={styles.valuesList}>
+                  {values.map((value, index) => (
+                    <div key={index} className={styles.valueItem}>
+                      <div className={styles.valueIcon}>
+                        {value.icon}
+                      </div>
+                      <div className={styles.valueContent}>
+                        <span className={styles.valueTitle}>{value.title}</span>
+                        <span className={styles.valueDash}> — </span>
+                        <span className={styles.valueDescription}>{value.description}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default VisionMissionValuesSection;

@@ -129,7 +129,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -170,18 +169,25 @@
   box-shadow: 0 8px 25px rgba(248, 175, 27, 0.08);
 }
 
+.valueCard:hover .valueIcon {
+  border-color: rgba(248, 175, 27, 0.4);
+  transform: scale(1.05);
+}
+
 .valueIcon {
   width: 60px;
   height: 60px;
-  background: #f8af1b;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #333333;
   flex-shrink: 0;
   position: relative;
   z-index: 2;
+  border: 2px solid rgba(248, 175, 27, 0.2);
+  transition: all 0.3s ease;
 }
 
 .valueContent {
