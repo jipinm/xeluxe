@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Globe, User, MapPin, Phone, Clock } from 'lucide-react';
+import { Mail, Globe, User } from 'lucide-react';
 import styles from './ContactUs.module.css';
 
 const ContactUs: React.FC = () => {
@@ -103,6 +103,23 @@ const ContactUs: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Map Section - Full Width */}
+      <motion.div 
+        className={styles.mapSection}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className={styles.mapContainer}>
+          <img 
+            src="/map.png" 
+            alt="Xeluxe Location Map" 
+            className={styles.mapImage}
+          />
+        </div>
+      </motion.div>
     </section>
   );
 };

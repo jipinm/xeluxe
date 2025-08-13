@@ -1,26 +1,26 @@
 import React from 'react';
-import { Linkedin, Twitter, Facebook, Instagram, Youtube, Award, Flame, CheckCircle, MapPin, Phone, Mail, AlertTriangle } from 'lucide-react';
+import { Linkedin, Twitter, Facebook, Instagram, Youtube, Award, Flame, CheckCircle, MapPin, Mail, AlertTriangle } from 'lucide-react';
 import styles from './Footer.module.css';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Sectors', href: '#sectors' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about-us' },
+    { name: 'Services', href: '/services' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Sectors', href: '/sectors' },
+    { name: 'Contact', href: '/contact-us' }
   ];
 
   const services = [
-    'Fire Risk Assessment',
-    'Fire Safety Systems',
-    'Compliance Auditing',
-    'Training Programs',
-    'Maintenance Services',
-    'Emergency Response'
+    'Fire and Life Safety',
+    'Process Safety',
+    'Engineering Simulation',
+    'Acoustics',
+    'Commissioning',
+    'Integrated Construction Supervision'
   ];
 
   const socialLinks = [
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
             <ul className={styles.linksList}>
               {services.map((service, index) => (
                 <li key={index} className={styles.linkItem}>
-                  <a href="#services" className={styles.link}>
+                  <a href="/services" className={styles.link}>
                     {service}
                   </a>
                 </li>
@@ -97,24 +97,23 @@ const Footer: React.FC = () => {
             <div className={styles.contactItem}>
               <MapPin className={styles.contactIcon} size={16} />
               <div className={styles.contactText}>
-                <p>123 Safety Street, Suite 100</p>
-                <p>City, State 12345</p>
-              </div>
-            </div>
-            
-            <div className={styles.contactItem}>
-              <Phone className={styles.contactIcon} size={16} />
-              <div className={styles.contactText}>
-                <p>+1 (555) 123-4567</p>
-                <span className={styles.contactNote}>24/7 Emergency</span>
+                <p>Dubai (HQ), Cork, Dammam, Abu Dhabi, Kerala</p>
               </div>
             </div>
             
             <div className={styles.contactItem}>
               <Mail className={styles.contactIcon} size={16} />
               <div className={styles.contactText}>
-                <p>info@xeluxe.com</p>
-                <span className={styles.contactNote}>Response within 2 hours</span>
+                <p>info@xeluxefiresafety.com</p>
+                <span className={styles.contactNote}>General inquiries</span>
+              </div>
+            </div>
+            
+            <div className={styles.contactItem}>
+              <Mail className={styles.contactIcon} size={16} />
+              <div className={styles.contactText}>
+                <p>c.ahking@xeluxefiresafety.com</p>
+                <span className={styles.contactNote}>Christopher Ah King - Managing Partner</span>
               </div>
             </div>
             
@@ -140,9 +139,9 @@ const Footer: React.FC = () => {
             </div>
             
             <div className={styles.legalLinks}>
-              <a href="#" className={styles.legalLink}>Blog</a>
-              <a href="#" className={styles.legalLink}>Careers</a>
-              <a href="#" className={styles.legalLink}>Cookie Policy</a>
+              <a href="/blog" className={styles.legalLink}>Blog</a>
+              <a href="/careers" className={styles.legalLink}>Careers</a>
+              <a href="/cookie-policy" className={styles.legalLink}>Cookie Policy</a>
             </div>
             
             <div className={styles.emergency}>

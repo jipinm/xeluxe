@@ -11,6 +11,8 @@ import Sectors from './pages/Sectors.tsx'
 import Projects from './pages/Projects.tsx'
 import ProjectDetailsPage from './pages/ProjectDetails.tsx'
 import Insights from './pages/Insights.tsx'
+import Blogs from './pages/Blogs.tsx'
+import BlogDetailsPage from './pages/BlogDetailsPage.tsx'
 import ContactUs from './pages/ContactUs.tsx'
 
 createRoot(document.getElementById('root')!).render(
@@ -26,6 +28,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path="projects" element={<Projects />} />
           <Route path="project/:slug" element={<ProjectDetailsPage />} />
           <Route path="insights" element={<Insights />} />
+          <Route path="blog" element={<Blogs />} />
+          <Route path="blog-details/:slug" element={<BlogDetailsPage />} />
           <Route path="contact-us" element={<ContactUs />} />
         </Route>
       </Routes>

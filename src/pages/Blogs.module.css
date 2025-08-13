@@ -1,8 +1,9 @@
 .blogsPage {
   min-height: 100vh;
-  background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 .mainContent {
-  padding: 0;
+  flex: 1;
 }

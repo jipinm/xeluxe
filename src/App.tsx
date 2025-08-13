@@ -21,6 +21,8 @@ function App() {
         return 'Our Projects';
       case '/insights':
         return 'Insights';
+      case '/blog':
+        return 'Blog';
       case '/contact-us':
         return 'Contact Us';
       // Add more cases for other pages as needed
@@ -32,6 +34,10 @@ function App() {
         // Check if it's a project details page (/project/:slug)
         if (pathname.startsWith('/project/')) {
           return 'Project Details';
+        }
+        // Check if it's a blog details page (/blog-details/:slug)
+        if (pathname.startsWith('/blog-details/')) {
+          return 'Blog Details';
         }
         return '';
     }
